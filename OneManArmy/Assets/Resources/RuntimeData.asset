@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2264bc9d2704fbf469714ff17b3b379e, type: 3}
+  m_Name: RuntimeData
+  m_EditorClassIdentifier: 
+  speed: 20
+  acceleration: 15
+  groundTextureSpeedMultiplicator: 0.02
+  minion: {fileID: 5871773894940040405, guid: ca00f34fde3925f4e93938d6c5855b99, type: 3}
+  minSpawnDistance: 45
+  maxSpawnDistance: 60
+  YOffset: 0.8
+  spawnRate: 0.5
+  minionSpeed: 3
