@@ -12,6 +12,10 @@ public class GameData : ScriptableObject
     public float acceleration;
     public float groundTextureSpeedMultiplicator;
 
+    [Header("Health")]
+    public float health;
+    public float invincibilityTime;
+
     [Header("Spawn")]
     public GameObject minion;
     public float minSpawnDistance;
@@ -21,6 +25,8 @@ public class GameData : ScriptableObject
 
     [Header("Minions")]
     public float minionSpeed;
+    public float minionHealth;
+    public float minionDamage;
 
     public void CopyValues(GameData source)
     {

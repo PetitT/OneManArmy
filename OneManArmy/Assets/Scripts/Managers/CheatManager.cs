@@ -15,7 +15,7 @@ public class CheatManager : MonoBehaviour
         foreach (var minion in FindObjectsOfType<Minion>())
         {
             minion.gameObject.SetActive(false);
-            EnemyManager.RemoveEnemy(minion.gameObject);
+            MinionManager.RemoveMinion(minion);
         }
     }
 }

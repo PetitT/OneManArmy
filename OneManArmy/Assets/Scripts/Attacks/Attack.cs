@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class Attack : ScriptableObject
 {
-    [SerializeField] int level;
+    [SerializeField] protected int level;
+    [SerializeField] protected int damage;
 
     public abstract void OnInitialize();
     public abstract void OnUpdate();

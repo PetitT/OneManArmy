@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,8 +12,8 @@ public class GameManager : MonoBehaviour
     MovementManager movementManager;
     MovingBackground movingBackground;
     MinionSpawner minionSpawner;
-   [SerializeField] CombatManager combatManager;
-    EnemyManager enemyManager;
+    [SerializeField] CombatManager combatManager;
+    MinionManager enemyManager;
 
     List<IUpdatable> updatables = new List<IUpdatable>();
 
@@ -23,7 +26,7 @@ public class GameManager : MonoBehaviour
         movementManager = new MovementManager();
         movingBackground = new MovingBackground(background);
         minionSpawner = new MinionSpawner();
-        enemyManager = new EnemyManager();
+        enemyManager = new MinionManager();
         combatManager = new CombatManager();
 
         updatables.Add(inputManager);
@@ -31,6 +34,23 @@ public class GameManager : MonoBehaviour
         updatables.Add(movementManager);
         updatables.Add(minionSpawner);
         updatables.Add(combatManager);
+
+        OnPlayerDeathEvent.RegisterListener(OnPlayerDeath);
+    }
+
+    private async void OnPlayerDeath(OnPlayerDeathEvent info)
+    {
+        updatables.Remove(inputManager);
+        updatables.Remove(movingBackground);
+        updatables.Remove(minionSpawner);
+        updatables.Remove(movementManager);
+        updatables.Remove(combatManager);
+
+        movementManager.Stop();
+
+        await Task.Delay(1000);
+        if (!Application.isPlaying) return;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()

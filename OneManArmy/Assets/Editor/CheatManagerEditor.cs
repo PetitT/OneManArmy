@@ -20,5 +20,15 @@ public class CheatManagerEditor : Editor
         {
             cheatManager.ClearAllMinions();
         }
+
+    }
+
+    private void OnSceneGUI()
+    {
+        if (GUI.Button(new Rect(10, 10, 50, 50), "Haaa"))
+        {
+
+        }
+        
     }
 }

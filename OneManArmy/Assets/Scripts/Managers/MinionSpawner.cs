@@ -21,8 +21,8 @@ public class MinionSpawner : IUpdatable
 
     private void SpawnMinion()
     {
-        GameObject newEnemy = Pool.Instance.GetItemFromPool(minion, GetRandomPoints(), Quaternion.identity);
-        EnemyManager.AddEnemy(newEnemy);
+        Minion newEnemy = Pool.Instance.GetItemFromPool(minion, GetRandomPoints(), Quaternion.identity).GetComponent<Minion>();
+        MinionManager.AddMinion(newEnemy);
     }
 
     private Vector3 GetRandomPoints()

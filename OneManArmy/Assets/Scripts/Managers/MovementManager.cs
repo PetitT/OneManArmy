@@ -40,4 +40,9 @@ public class MovementManager : IUpdatable
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
         movement = lastMovement * currentSpeed;
     }
+
+    public void Stop()
+    {
+        movement = Vector2.zero;
+    }
 }

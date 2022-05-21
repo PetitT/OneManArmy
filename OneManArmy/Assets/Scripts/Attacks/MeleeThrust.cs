@@ -14,12 +14,16 @@ public class MeleeThrust : Attack
     [SerializeField] int lingerInMiliseconds;
     float remainingCooldown;
     GameObject weapon;
+    DamageDealer damageDealer;
+    Vector3 defaultScale;
 
 
     public override void OnInitialize()
     {
         remainingCooldown = cooldown;
-        weapon = Instantiate(weaponPrefab, Character.body);
+        weapon = Instantiate(weaponPrefab);
+        damageDealer = weapon.GetComponentInChildren<DamageDealer>();
+        defaultScale = weapon.transform.GetChild(0).localScale;
         weapon.SetActive(false);
     }
 
@@ -37,7 +41,7 @@ public class MeleeThrust : Attack
 
     private void CheckAttackAvailability()
     {
-        GameObject closestEnemy = EnemyManager.GetClosestEnemy();
+        Minion closestEnemy = MinionManager.GetClosestMinion();
         if (closestEnemy.transform.position.magnitude < range)
         {
             DoAttack(closestEnemy);
@@ -45,16 +49,14 @@ public class MeleeThrust : Attack
         }
     }
 
-    private async void DoAttack(GameObject enemy)
+    private async void DoAttack(Minion enemy)
     {
-        enemy.SetActive(false);
         weapon.transform.LookAt(enemy.transform.position);
-        Vector3 currentScale = weaponPrefab.transform.GetChild(0).localScale;
-        weapon.transform.GetChild(0).localScale = new Vector3(currentScale.x, currentScale.y, range);
+        weapon.transform.GetChild(0).localScale = new Vector3(defaultScale.x, defaultScale.y, range);
+        damageDealer.SetDamage(damage);
         weapon.SetActive(true);
         await Task.Delay(lingerInMiliseconds);
+        if (!Application.isPlaying) return;
         weapon.SetActive(false);
     }
-
-
 }
