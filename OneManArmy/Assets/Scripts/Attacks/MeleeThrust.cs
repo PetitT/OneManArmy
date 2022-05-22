@@ -21,7 +21,7 @@ public class MeleeThrust : Attack
     public override void OnInitialize()
     {
         remainingCooldown = cooldown;
-        weapon = Instantiate(weaponPrefab);
+        weapon = Instantiate(weaponPrefab, Character.body.transform.position, Quaternion.identity);
         damageDealer = weapon.GetComponentInChildren<DamageDealer>();
         defaultScale = weapon.transform.GetChild(0).localScale;
         weapon.SetActive(false);

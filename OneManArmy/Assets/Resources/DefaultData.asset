@@ -15,8 +15,9 @@ MonoBehaviour:
   speed: 20
   acceleration: 15
   groundTextureSpeedMultiplicator: 0.02
-  health: 10
+  health: 500
   invincibilityTime: 0
+  healthBarDisplayTime: 2
   minion: {fileID: 5871773894940040405, guid: ca00f34fde3925f4e93938d6c5855b99, type: 3}
   minSpawnDistance: 45
   maxSpawnDistance: 60

@@ -15,6 +15,7 @@ public class GameData : ScriptableObject
     [Header("Health")]
     public float health;
     public float invincibilityTime;
+    public float healthBarDisplayTime;
 
     [Header("Spawn")]
     public GameObject minion;

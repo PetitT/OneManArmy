@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CheatManager : MonoBehaviour
 {
-    public Attack attackToAdd;
-    public void AddAttack()
+    public List<Attack> attacks;
+    public bool displayCheatMenu;
+    public void AddAttack(Attack attack)
     {
-        CombatManager.AddAttack(attackToAdd);
+        CombatManager.AddAttack(attack);
     }
 
     public void ClearAllMinions()
@@ -16,6 +17,24 @@ public class CheatManager : MonoBehaviour
         {
             minion.gameObject.SetActive(false);
             MinionManager.RemoveMinion(minion);
+        }
+    }
+
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(Screen.width - 100, 0, 100, 25), "Cheat menu"))
+        {
+            displayCheatMenu = !displayCheatMenu;
+        }
+
+        if (!displayCheatMenu) return;
+
+        for (int i = 0; i < attacks.Count; i++)
+        {
+            if (GUI.Button(new Rect(0, i * 25, 100, 25), attacks[i].name))
+            {
+                AddAttack(attacks[i]);
+            }
         }
     }
 }
