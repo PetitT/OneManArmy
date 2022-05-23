@@ -18,18 +18,15 @@ public class Minion : MonoBehaviour, IDamageable
         damageDealer.SetDamage(DataManager.runtimeData.minionDamage);
 
         health.onDeath += Health_onDeath;
+        movement.onLeftArena += Movement_onLeftArena;
 
         updatables.Add(movement);
     }
 
-    public void Initialize()
+    private void OnDestroy()
     {
-        health.FullyRegenerate();
-    }
-
-    private void Health_onDeath()
-    {
-        gameObject.SetActive(false);
+        health.onDeath -= Health_onDeath;
+        movement.onLeftArena -= Movement_onLeftArena;
     }
 
     private void Update()
@@ -37,9 +34,26 @@ public class Minion : MonoBehaviour, IDamageable
         updatables.ForEach(t => t.OnUpdate());
     }
 
+
+    public void ReInitialize()
+    {
+        health.FullyRegenerate();
+    }
+
+    private void Health_onDeath()
+    {
+        OnMinionDeathEvent onMinionDeath = new OnMinionDeathEvent();
+        onMinionDeath.FireEvent();
+        gameObject.SetActive(false);
+    }
+
+    private void Movement_onLeftArena()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void TakeDamage(float damage)
     {
         health.TakeDamage(damage);
     }
-
 }

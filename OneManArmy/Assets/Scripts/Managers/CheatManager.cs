@@ -8,7 +8,7 @@ public class CheatManager : MonoBehaviour
     public bool displayCheatMenu;
     public void AddAttack(Attack attack)
     {
-        CombatManager.AddAttack(attack);
+        CombatManager.LevelUpAttack(attack);
     }
 
     public void ClearAllMinions()
@@ -31,7 +31,7 @@ public class CheatManager : MonoBehaviour
 
         for (int i = 0; i < attacks.Count; i++)
         {
-            if (GUI.Button(new Rect(0, i * 25, 100, 25), attacks[i].name))
+            if (GUI.Button(new Rect(0, i * 25, 125, 25), $"{attacks[i].name} - {attacks[i].currentLevel}"))
             {
                 AddAttack(attacks[i]);
             }

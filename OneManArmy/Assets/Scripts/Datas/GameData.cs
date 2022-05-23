@@ -21,6 +21,7 @@ public class GameData : ScriptableObject
     public GameObject minion;
     public float minSpawnDistance;
     public float maxSpawnDistance;
+    public float maxDistanceFromCenter;
     public float YOffset;
     public float spawnRate;
 
@@ -29,12 +30,19 @@ public class GameData : ScriptableObject
     public float minionHealth;
     public float minionDamage;
 
-    public void CopyValues(GameData source)
-    {
-        FieldInfo[] fields = GetType().GetFields();
-        for (int i = 0; i < fields.Length; i++)
-        {
-            GetType().GetField(fields[i].Name).SetValue(this, fields[i].GetValue(source));
-        }
-    }
+    [Header("Experience")]
+    public List<float> xpTable;
+    public float xpPerMinionKill;
+
+    [Header("Rules")]
+    public int attackMaxLevel;
+
+    //public void CopyValues(GameData source)
+    //{
+    //    FieldInfo[] fields = GetType().GetFields();
+    //    for (int i = 0; i < fields.Length; i++)
+    //    {
+    //        GetType().GetField(fields[i].Name).SetValue(this, fields[i].GetValue(source));
+    //    }
+    //}
 }

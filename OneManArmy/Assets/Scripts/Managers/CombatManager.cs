@@ -6,10 +6,17 @@ public class CombatManager : IUpdatable
 {
     public static List<Attack> attacks = new List<Attack>();
 
-    public static void AddAttack(Attack newAttack)
+    public static void LevelUpAttack(Attack newAttack)
     {
-        attacks.Add(newAttack);
-        newAttack.OnInitialize();
+        if (!attacks.Contains(newAttack))
+        {
+            attacks.Add(newAttack);
+            newAttack.OnInitialize();
+        }
+        else
+        {
+            newAttack.LevelUp();
+        }
     }
 
     public void OnUpdate()
