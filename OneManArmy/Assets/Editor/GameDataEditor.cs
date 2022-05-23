@@ -15,7 +15,7 @@ public class GameDataEditor : Editor
         {
             GameData runtimeData = Resources.Load<GameData>("RuntimeData");
             GameData defaultData = Resources.Load<GameData>("DefaultData");
-            defaultData.CopyValues(runtimeData);
+            defaultData.CopyFieldsFrom(runtimeData);
         }
     }
 }
