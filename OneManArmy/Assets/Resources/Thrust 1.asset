@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b14a055b246d23d43be4cef5e90dc008, type: 3}
-  m_Name: Thrust Attack
+  m_Name: Thrust 1
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 2937979261596537803, guid: 91c7e38e175177a43b42255e879c667a,
     type: 3}
@@ -19,34 +19,34 @@ MonoBehaviour:
     damage: 3
     cooldown: 0.5
     range: 3
-    lingerInMs: 250
+    linger: 0.25
   - info: +Atk +Range
     damage: 1
     cooldown: 0
     range: 1
-    lingerInMs: 0
+    linger: 0
   - info: +Atk -CD
     damage: 1
     cooldown: -0.1
     range: 0
-    lingerInMs: 0
+    linger: 0
   - info: +Range +Linger
     damage: 0
     cooldown: 0
     range: 1
-    lingerInMs: 50
+    linger: 0.2
   - info: +Range
     damage: 0
     cooldown: 0
     range: 2
-    lingerInMs: 0
+    linger: 0
   - info: -CD
     damage: 1
     cooldown: -0.2
     range: 0
-    lingerInMs: 0
+    linger: 0
   - info: +Range +Linger + Damage -CD
     damage: 1
     cooldown: -0.1
     range: 1
-    lingerInMs: 50
+    linger: 0.2

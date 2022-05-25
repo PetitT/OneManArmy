@@ -10,6 +10,11 @@ public abstract class Attack : ScriptableObject, ISerializationCallbackReceiver
     public abstract void OnUpdate();
     protected abstract void OnLevelUp();
 
+    public void Reset()
+    {
+        currentLevel = 0;
+    }
+
     public void LevelUp()
     {
         if (currentLevel >= DataManager.runtimeData.attackMaxLevel) return;
@@ -26,5 +31,5 @@ public abstract class Attack : ScriptableObject, ISerializationCallbackReceiver
         currentLevel = 0;
     }
 
-
+    public abstract string GetCurrentLevelUpInfo();
 }

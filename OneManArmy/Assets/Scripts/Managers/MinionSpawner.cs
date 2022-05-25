@@ -14,6 +14,11 @@ public class MinionSpawner : IUpdatable
     float spawnDelay => DataManager.runtimeData.spawnRate;
     float remainingSpawnDelay;
 
+    public MinionSpawner()
+    {
+        remainingSpawnDelay = spawnDelay;
+    }
+
     public void OnUpdate()
     {
         Timer.LoopedCountDown(ref remainingSpawnDelay, spawnDelay, SpawnMinion);
@@ -22,7 +27,6 @@ public class MinionSpawner : IUpdatable
     private void SpawnMinion()
     {
         Minion newEnemy = Pool.Instance.GetItemFromPool(minion, GetRandomPoints(), Quaternion.identity).GetComponent<Minion>();
-        MinionManager.AddMinion(newEnemy);
     }
 
     private Vector3 GetRandomPoints()

@@ -36,13 +36,4 @@ public class GameData : ScriptableObject
 
     [Header("Rules")]
     public int attackMaxLevel;
-
-    //public void CopyValues(GameData source)
-    //{
-    //    FieldInfo[] fields = GetType().GetFields();
-    //    for (int i = 0; i < fields.Length; i++)
-    //    {
-    //        GetType().GetField(fields[i].Name).SetValue(this, fields[i].GetValue(source));
-    //    }
-    //}
 }

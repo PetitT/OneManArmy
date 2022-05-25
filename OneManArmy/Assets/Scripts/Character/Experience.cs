@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Experience
 {
-    float currentExperience;
     int currentLevel;
+    float currentExperience;
 
     List<float> xpTable => DataManager.runtimeData.xpTable;
     float experienceToLevelUp => xpTable[currentLevel];

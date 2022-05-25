@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheatManager : MonoBehaviour
 {
-    public List<Attack> attacks;
+    private List<Attack> attacks => AttacksSelect.availableAttacks;
     public bool displayCheatMenu;
     public void AddAttack(Attack attack)
     {

@@ -12,12 +12,17 @@ public class GameManager : MonoBehaviour
     MovementManager movementManager;
     MovingBackground movingBackground;
     MinionSpawner minionSpawner;
-    [SerializeField] CombatManager combatManager;
-    MinionManager enemyManager;
+    MinionManager minionManager;
+    CombatManager combatManager;
+    AttacksSelect attacksSelect;
+    [SerializeField] CanvasManager canvasManager;
+    [SerializeField] MeshRenderer background;
+    [SerializeField] List<Attack> attacks;
 
     List<IUpdatable> updatables = new List<IUpdatable>();
+    GameState currentState = GameState.pause;
 
-    [SerializeField] private MeshRenderer background;
+    public enum GameState { playing, pause }
 
     private void Start()
     {
@@ -25,28 +30,49 @@ public class GameManager : MonoBehaviour
         dataManager = new DataManager();
         movementManager = new MovementManager();
         movingBackground = new MovingBackground(background);
+        minionManager = new MinionManager();
         minionSpawner = new MinionSpawner();
-        enemyManager = new MinionManager();
         combatManager = new CombatManager();
+        attacksSelect = new AttacksSelect(attacks);
 
         updatables.Add(inputManager);
         updatables.Add(movingBackground);
         updatables.Add(movementManager);
         updatables.Add(minionSpawner);
         updatables.Add(combatManager);
+        updatables.Add(minionManager);
 
         OnPlayerDeathEvent.RegisterListener(OnPlayerDeath);
+        OnLevelUpEvent.RegisterListener(OnLevelUp);
+        OnSpellLevelUpEvent.RegisterListener(OnSpellLevelUp);
+
+        canvasManager.DisplayGameCanvas();
+
+        SetState(GameState.playing);
+    }
+
+    private void OnDestroy()
+    {
+        OnPlayerDeathEvent.UnregisterListener(OnPlayerDeath);
+        OnLevelUpEvent.UnregisterListener(OnLevelUp);
+        OnSpellLevelUpEvent.UnregisterListener(OnSpellLevelUp);
+    }
+
+    private void OnLevelUp(OnLevelUpEvent info)
+    {
+        SetState(GameState.pause);
+        canvasManager.DisplayLevelUpCanvas();
+    }
+
+    private void OnSpellLevelUp(OnSpellLevelUpEvent info)
+    {
+        SetState(GameState.playing);
+        canvasManager.DisplayGameCanvas();
     }
 
     private async void OnPlayerDeath(OnPlayerDeathEvent info)
     {
-        updatables.Remove(inputManager);
-        updatables.Remove(movingBackground);
-        updatables.Remove(minionSpawner);
-        updatables.Remove(movementManager);
-        updatables.Remove(combatManager);
-
-        movementManager.Stop();
+        SetState(GameState.pause);
 
         await Task.Delay(1000);
         if (!Application.isPlaying) return;
@@ -55,6 +81,26 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        updatables.ForEach(t => t.OnUpdate());
+        if (currentState == GameState.pause) return;
+
+        for (int i = 0; i < updatables.Count; i++)
+        {
+            updatables[i].OnUpdate();
+        }
+    }
+
+    private void SetState(GameState state)
+    {
+        currentState = state;
+        switch (currentState)
+        {
+            case GameState.playing:
+                break;
+            case GameState.pause:
+                movementManager.Stop();
+                break;
+            default:
+                break;
+        }
     }
 }

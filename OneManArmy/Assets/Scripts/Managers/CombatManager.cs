@@ -6,6 +6,11 @@ public class CombatManager : IUpdatable
 {
     public static List<Attack> attacks = new List<Attack>();
 
+    public CombatManager()
+    {
+        attacks.Clear();
+    }
+
     public static void LevelUpAttack(Attack newAttack)
     {
         if (!attacks.Contains(newAttack))

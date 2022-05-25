@@ -3,13 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class MinionManager
+public class MinionManager : IUpdatable
 {
     public static List<Minion> minions = new List<Minion>();
 
+    public MinionManager()
+    {
+        minions.Clear();
+    }
+
     public static void AddMinion(Minion newEnemy)
     {
-        minions.Add(newEnemy);
+        if (!minions.Contains(newEnemy))
+        {
+            minions.Add(newEnemy);
+        }
+        else
+        {
+            Debug.LogWarning("Trying to add an already existing minion");
+        }
     }
 
     public static void RemoveMinion(Minion enemy)
@@ -21,6 +33,14 @@ public class MinionManager
         else
         {
             Debug.LogWarning("Trying to remove an enemy that is not in the list");
+        }
+    }
+
+    public void OnUpdate()
+    {
+        foreach (var minion in minions.ToList())
+        {
+            minion.OnUpdate();
         }
     }
 
