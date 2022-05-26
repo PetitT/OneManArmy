@@ -4,32 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinionSpawner : IUpdatable
+public class MinionSpawner : Spawner
 {
-    GameObject minion => DataManager.runtimeData.minion;
-    Vector2 movement => MovementManager.movement;
-    float minSpawnDistance => DataManager.runtimeData.minSpawnDistance;
-    float maxSpawnDistance => DataManager.runtimeData.maxSpawnDistance;
-    float YOffset => DataManager.runtimeData.YOffset;
-    float spawnDelay => DataManager.runtimeData.spawnRate;
-    float remainingSpawnDelay;
+    protected override GameObject objectToSpawn => DataManager.runtimeData.minion;
+    protected override float spawnDelay => DataManager.runtimeData.minionSpawnRate;
 
-    public MinionSpawner()
-    {
-        remainingSpawnDelay = spawnDelay;
-    }
-
-    public void OnUpdate()
-    {
-        Timer.LoopedCountDown(ref remainingSpawnDelay, spawnDelay, SpawnMinion);
-    }
-
-    private void SpawnMinion()
-    {
-        Minion newEnemy = Pool.Instance.GetItemFromPool(minion, GetRandomPoints(), Quaternion.identity).GetComponent<Minion>();
-    }
-
-    private Vector3 GetRandomPoints()
+    protected override Vector3 GetRandomPosition()
     {
         float XValue = movement.x;
         float YValue = movement.y;

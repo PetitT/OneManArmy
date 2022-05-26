@@ -15,7 +15,7 @@ MonoBehaviour:
   speed: 20
   acceleration: 15
   groundTextureSpeedMultiplicator: 0.02
-  health: 500
+  health: 20
   invincibilityTime: 0
   healthBarDisplayTime: 0.5
   minion: {fileID: 5871773894940040405, guid: ca00f34fde3925f4e93938d6c5855b99, type: 3}
@@ -23,10 +23,11 @@ MonoBehaviour:
   maxSpawnDistance: 60
   maxDistanceFromCenter: 100
   YOffset: 0.8
-  spawnRate: 0.25
   minionSpeed: 3
   minionHealth: 10
   minionDamage: 5
+  minionSpawnRate: 1
+  coinSpawnRate: 0
   xpTable:
   - 1
   - 3
@@ -39,3 +40,4 @@ MonoBehaviour:
   - 17
   - 19
   xpPerMinionKill: 1
+  attackMaxLevel: 7

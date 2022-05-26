@@ -23,10 +23,11 @@ MonoBehaviour:
   maxSpawnDistance: 60
   maxDistanceFromCenter: 100
   YOffset: 0.8
-  spawnRate: 0.25
   minionSpeed: 3
   minionHealth: 10
   minionDamage: 5
+  minionSpawnRate: 1
+  coinSpawnRate: 0
   xpTable:
   - 1
   - 3

@@ -2075,17 +2075,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameCanvas: {fileID: 2096938013}
   levelUpCanvas: {fileID: 1139839111}
-  buttonName:
-  - {fileID: 1744229656}
-  - {fileID: 1351298089}
-  - {fileID: 1566762187}
-  buttonDescription:
-  - {fileID: 1836628494}
-  - {fileID: 1351298088}
-  - {fileID: 1566762186}
-  button1: {fileID: 1000600348}
-  button2: {fileID: 1351298090}
-  button3: {fileID: 1566762188}
   levelText: {fileID: 1485342895}
   buttonInfos:
   - button: {fileID: 1000600348}
