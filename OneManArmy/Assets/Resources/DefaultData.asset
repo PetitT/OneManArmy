@@ -18,16 +18,17 @@ MonoBehaviour:
   health: 20
   invincibilityTime: 0
   healthBarDisplayTime: 0.5
-  minion: {fileID: 5871773894940040405, guid: ca00f34fde3925f4e93938d6c5855b99, type: 3}
   minSpawnDistance: 45
   maxSpawnDistance: 60
   maxDistanceFromCenter: 100
-  YOffset: 0.8
+  minion: {fileID: 5871773894940040405, guid: ca00f34fde3925f4e93938d6c5855b99, type: 3}
   minionSpeed: 3
   minionHealth: 10
   minionDamage: 5
   minionSpawnRate: 1
-  coinSpawnRate: 0
+  coin: {fileID: 3914043095429836201, guid: 7947aa09b7287514c8268b686313363f, type: 3}
+  coinSpawnRate: 1
+  coinGrabDistance: 5
   xpTable:
   - 1
   - 3

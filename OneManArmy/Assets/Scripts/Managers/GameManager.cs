@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     MovementManager movementManager;
     MovingBackground movingBackground;
     MinionSpawner minionSpawner;
+    CoinManager coinManager;
+    CoinSpawner coinSpawner;
     MinionManager minionManager;
     CombatManager combatManager;
     AttacksSelect attacksSelect;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
         movingBackground = new MovingBackground(background);
         minionManager = new MinionManager();
         minionSpawner = new MinionSpawner();
+        coinManager = new CoinManager();
+        coinSpawner = new CoinSpawner();
         combatManager = new CombatManager();
         attacksSelect = new AttacksSelect(attacks);
 
@@ -39,6 +43,8 @@ public class GameManager : MonoBehaviour
         updatables.Add(movingBackground);
         updatables.Add(movementManager);
         updatables.Add(minionSpawner);
+        updatables.Add(coinSpawner);
+        updatables.Add(coinManager);
         updatables.Add(combatManager);
         updatables.Add(minionManager);
 

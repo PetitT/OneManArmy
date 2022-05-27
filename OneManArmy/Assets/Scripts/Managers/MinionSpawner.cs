@@ -69,6 +69,6 @@ public class MinionSpawner : Spawner
         float X = UnityEngine.Random.Range(minX, maxX) * currentX;
         float Y = UnityEngine.Random.Range(minY, maxY) * currentY;
 
-        return new Vector3(X, YOffset, Y);
+        return new Vector3(X, 0, Y);
     }
 }

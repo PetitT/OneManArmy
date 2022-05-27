@@ -10,7 +10,6 @@ public abstract class Spawner : IUpdatable
     protected Vector2 movement => MovementManager.movement;
     protected float minSpawnDistance => DataManager.runtimeData.minSpawnDistance;
     protected float maxSpawnDistance => DataManager.runtimeData.maxSpawnDistance;
-    protected float YOffset => DataManager.runtimeData.YOffset;
 
     float remainingSpawnDelay;
 

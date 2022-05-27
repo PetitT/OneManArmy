@@ -2,51 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion : MonoBehaviour, IDamageable, IUpdatable
+public class Minion : Spawnable
 {
     Health health;
-    MinionMovement movement;
     DamageDealer damageDealer;
-    List<IUpdatable> updatables = new List<IUpdatable>();
-    bool initialized = false;
 
-    private void Initialize()
+    protected override void Initialize()
     {
         health = new Health(DataManager.runtimeData.minionHealth);
         movement = new MinionMovement(transform);
         damageDealer = GetComponent<DamageDealer>();
+        updatables.Add(movement);
 
         damageDealer.SetDamage(DataManager.runtimeData.minionDamage);
-        updatables.Add(movement);
 
         health.onDeath += Health_onDeath;
         movement.onLeftArena += Movement_onLeftArena;
-
-        initialized = true;
-
     }
 
     private void OnEnable()
     {
-        if (!initialized) { Initialize(); }
         health.FullyRegenerate();
-        MinionManager.AddMinion(this);
+        MinionManager.AddObject(this);
     }
 
     private void OnDisable()
     {
-        MinionManager.RemoveMinion(this);
+        MinionManager.RemoveObject(this);
     }
 
     private void OnDestroy()
     {
-        health.onDeath -= Health_onDeath;
         movement.onLeftArena -= Movement_onLeftArena;
-    }
-
-    public void OnUpdate()
-    {
-        updatables.ForEach(t => t.OnUpdate());
+        health.onDeath -= Health_onDeath;
     }
 
     private void Health_onDeath()
@@ -55,7 +43,6 @@ public class Minion : MonoBehaviour, IDamageable, IUpdatable
         onMinionDeath.FireEvent();
         gameObject.SetActive(false);
     }
-
     private void Movement_onLeftArena()
     {
         gameObject.SetActive(false);

@@ -19,6 +19,9 @@ public class Character : MonoBehaviour, IDamageable
     HealthBarDisplay healthBarDisplay;
     Experience experience;
     ExperienceBarDisplay xpBarDisplay;
+    CoinMagnet coinMagnet;
+
+    bool isVulnerable = true;
 
     List<IUpdatable> updatables = new List<IUpdatable>();
 
@@ -29,7 +32,9 @@ public class Character : MonoBehaviour, IDamageable
         healthBarDisplay = new HealthBarDisplay(healthBar, health);
         experience = new Experience();
         xpBarDisplay = new ExperienceBarDisplay(xpbar, levelText);
+        coinMagnet = new CoinMagnet();
 
+        updatables.Add(coinMagnet);
         updatables.Add(healthBarDisplay);
 
         health.onDeath += Health_onDeath;
@@ -61,6 +66,12 @@ public class Character : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if (!isVulnerable) return;
         health.TakeDamage(damage);
+    }
+
+    public void ToggleInvulnerability()
+    {
+        isVulnerable = !isVulnerable;
     }
 }

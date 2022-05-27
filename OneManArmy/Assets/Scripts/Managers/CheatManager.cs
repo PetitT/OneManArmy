@@ -13,11 +13,15 @@ public class CheatManager : MonoBehaviour
 
     public void ClearAllMinions()
     {
-        foreach (var minion in FindObjectsOfType<Minion>())
+        foreach (var minion in MinionManager.currentObjects)
         {
             minion.gameObject.SetActive(false);
-            MinionManager.RemoveMinion(minion);
         }
+    }
+
+    public void ToggleGodMode()
+    {
+        FindObjectOfType<Character>().ToggleInvulnerability();
     }
 
     private void OnGUI()
@@ -35,6 +39,11 @@ public class CheatManager : MonoBehaviour
             {
                 AddAttack(attacks[i]);
             }
+        }
+
+        if(GUI.Button(new Rect(Screen.width - 100, 25,100,25), "Invulnerable"))
+        {
+            ToggleGodMode();
         }
     }
 }

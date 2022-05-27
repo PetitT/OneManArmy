@@ -18,20 +18,21 @@ public class GameData : ScriptableObject
     public float healthBarDisplayTime;
 
     [Header("Spawn")]
-    public GameObject minion;
     public float minSpawnDistance;
     public float maxSpawnDistance;
     public float maxDistanceFromCenter;
-    public float YOffset;
 
     [Header("Minions")]
+    public GameObject minion;
     public float minionSpeed;
     public float minionHealth;
     public float minionDamage;
     public float minionSpawnRate;
 
     [Header("Coins")]
+    public GameObject coin;
     public float coinSpawnRate;
+    public float coinGrabDistance;
 
     [Header("Experience")]
     public List<float> xpTable;
