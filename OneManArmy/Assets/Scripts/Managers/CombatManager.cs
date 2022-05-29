@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CombatManager : IUpdatable
 {
-    public static List<Attack> attacks = new List<Attack>();
+    public static List<Attack> attacks { get; private set; }
 
     public CombatManager()
     {
+        attacks = new List<Attack>();
         attacks.Clear();
     }
 

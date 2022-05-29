@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     MinionManager minionManager;
     CombatManager combatManager;
     AttacksSelect attacksSelect;
+    TimeManager timeManager;
     [SerializeField] CanvasManager canvasManager;
     [SerializeField] MeshRenderer background;
     [SerializeField] List<Attack> attacks;
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
         coinSpawner = new CoinSpawner();
         combatManager = new CombatManager();
         attacksSelect = new AttacksSelect(attacks);
+        timeManager = new TimeManager();
 
         updatables.Add(inputManager);
         updatables.Add(movingBackground);
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
         updatables.Add(coinManager);
         updatables.Add(combatManager);
         updatables.Add(minionManager);
+        updatables.Add(timeManager);
 
         OnPlayerDeathEvent.RegisterListener(OnPlayerDeath);
         OnLevelUpEvent.RegisterListener(OnLevelUp);

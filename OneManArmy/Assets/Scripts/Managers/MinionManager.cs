@@ -7,6 +7,6 @@ public class MinionManager : SpawnableManager<MinionManager>
 {
     public static Minion GetClosestMinion()
     {
-        return currentObjects.OrderBy(t => t.transform.position.sqrMagnitude).FirstOrDefault() as Minion;
+        return CurrentObjects.OrderBy(t => t.transform.position.sqrMagnitude).FirstOrDefault() as Minion;
     }
 }

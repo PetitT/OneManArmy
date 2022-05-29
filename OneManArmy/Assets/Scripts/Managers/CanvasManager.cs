@@ -1,6 +1,8 @@
+using LowTeeGames;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Canvas gameCanvas;
     [SerializeField] Canvas levelUpCanvas;
     [SerializeField] TMP_Text levelText;
+    [SerializeField] TMP_Text timeText;
     [SerializeField] List<ButtonInfo> buttonInfos;
 
     private List<Attack> currentSelectedAttacks;
@@ -20,6 +23,8 @@ public class CanvasManager : MonoBehaviour
         buttonInfos[0].button.onClick.AddListener(ButtonOne);
         buttonInfos[1].button.onClick.AddListener(ButtonTwo);
         buttonInfos[2].button.onClick.AddListener(ButtonThree);
+
+        InvokeRepeating("DisplayCurrentTime", 0, 1);
     }
 
     private void OnDestroy()
@@ -33,6 +38,18 @@ public class CanvasManager : MonoBehaviour
     private void DisplayLevel(OnLevelUpEvent info)
     {
         levelText.text = $"Level {info.newlevel}";
+    }
+
+    private void DisplayCurrentTime()
+    {
+        int seconds = (int)TimeManager.CurrentTime % 60;
+        int minutes = ((int)TimeManager.CurrentTime - seconds)/60;
+        StringBuilder sb = new StringBuilder();
+        sb.Append(minutes);
+        sb.Append(":");
+        if(seconds < 10) { sb.Append("0"); }
+        sb.Append(seconds);
+        timeText.text = sb.ToString();
     }
 
     public void DisplayGameCanvas()
@@ -79,7 +96,7 @@ public class CanvasManager : MonoBehaviour
 
     private void PressButton(int index)
     {
-        currentSelectedAttacks[index].LevelUp();
+        CombatManager.LevelUpAttack(currentSelectedAttacks[index]);
         OnSpellLevelUpEvent onSpellLevelUp = new OnSpellLevelUpEvent();
         onSpellLevelUp.FireEvent();
     }

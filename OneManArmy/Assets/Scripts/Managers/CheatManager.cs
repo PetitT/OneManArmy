@@ -13,7 +13,7 @@ public class CheatManager : MonoBehaviour
 
     public void ClearAllMinions()
     {
-        foreach (var minion in MinionManager.currentObjects)
+        foreach (var minion in MinionManager.CurrentObjects)
         {
             minion.gameObject.SetActive(false);
         }

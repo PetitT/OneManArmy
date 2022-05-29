@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class SpawnableManager<T> : IUpdatable
 {
-    public static List<Spawnable> currentObjects { get; private set; }
+    public static List<Spawnable> CurrentObjects { get; private set; }
 
     public SpawnableManager()
     {
-        currentObjects = new List<Spawnable>();
+        CurrentObjects = new List<Spawnable>();
     }
     
     public static void AddObject(Spawnable newObject)
     {
-        if (!currentObjects.Contains(newObject))
+        if (!CurrentObjects.Contains(newObject))
         {
-            currentObjects.Add(newObject);
+            CurrentObjects.Add(newObject);
         }
         else
         {
@@ -26,9 +26,9 @@ public class SpawnableManager<T> : IUpdatable
 
     public static void RemoveObject(Spawnable objectToRemove)
     {
-        if (currentObjects.Contains(objectToRemove))
+        if (CurrentObjects.Contains(objectToRemove))
         {
-            currentObjects.Remove(objectToRemove);
+            CurrentObjects.Remove(objectToRemove);
         }
         else
         {
@@ -38,7 +38,7 @@ public class SpawnableManager<T> : IUpdatable
 
     public void OnUpdate()
     {
-        foreach (var item in currentObjects.ToList())
+        foreach (var item in CurrentObjects.ToList())
         {
             item.OnUpdate();
         }

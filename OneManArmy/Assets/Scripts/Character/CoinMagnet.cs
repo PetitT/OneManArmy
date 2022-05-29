@@ -9,7 +9,7 @@ public class CoinMagnet : IUpdatable
 
     public void OnUpdate()
     {
-        foreach (var coin in CoinManager.currentObjects.ToList())
+        foreach (var coin in CoinManager.CurrentObjects.ToList())
         {
             if (coin.transform.position.sqrMagnitude < sqrCoinGrabDistance)
             {
