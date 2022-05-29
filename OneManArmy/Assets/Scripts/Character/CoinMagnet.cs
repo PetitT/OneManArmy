@@ -13,6 +13,8 @@ public class CoinMagnet : IUpdatable
         {
             if (coin.transform.position.sqrMagnitude < sqrCoinGrabDistance)
             {
+                OnCoinCollectedEvent onCoinCollectedEvent = new OnCoinCollectedEvent();
+                onCoinCollectedEvent.FireEvent();
                 coin.gameObject.SetActive(false);
             }
         }

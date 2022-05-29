@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion : Spawnable
+public class Minion : Spawnable, IDamageable
 {
     Health health;
     DamageDealer damageDealer;

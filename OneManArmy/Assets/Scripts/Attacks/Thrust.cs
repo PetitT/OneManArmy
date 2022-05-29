@@ -73,7 +73,7 @@ public class Thrust : Attack
     private void DoAttack(Minion enemy)
     {
         weapon.SetActive(false);
-        weapon.transform.LookAt(enemy.transform.position);
+        weapon.transform.LookAt(new Vector3(enemy.transform.position.x, weapon.transform.position.y, enemy.transform.position.z));
         weapon.transform.GetChild(0).localScale = new Vector3(defaultScale.x, defaultScale.y, data.range);
         damageDealer.SetDamage(data.damage);
         weapon.SetActive(true);

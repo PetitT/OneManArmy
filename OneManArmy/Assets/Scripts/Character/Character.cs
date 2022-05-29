@@ -39,6 +39,7 @@ public class Character : MonoBehaviour, IDamageable
 
         health.onDeath += Health_onDeath;
         OnMinionDeathEvent.RegisterListener(OnMinionDeath);
+        OnCoinCollectedEvent.RegisterListener(OnCoinCollected);
     }
 
     private void Update()
@@ -50,6 +51,7 @@ public class Character : MonoBehaviour, IDamageable
     {
         health.onDeath -= Health_onDeath;
         OnMinionDeathEvent.UnregisterListener(OnMinionDeath);
+        OnCoinCollectedEvent.UnregisterListener(OnCoinCollected);
     }
 
     private void Health_onDeath()
@@ -61,7 +63,12 @@ public class Character : MonoBehaviour, IDamageable
 
     private void OnMinionDeath(OnMinionDeathEvent info)
     {
-        experience.AddExperience(DataManager.runtimeData.xpPerMinionKill);
+        experience.AddExperience(DataManager.runtimeData.experiencePerMinionKill);
+    }
+
+    private void OnCoinCollected(OnCoinCollectedEvent info)
+    {
+        experience.AddExperience(DataManager.runtimeData.experiencePerCoin);
     }
 
     public void TakeDamage(float damage)

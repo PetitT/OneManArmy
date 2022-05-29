@@ -33,10 +33,11 @@ public class GameData : ScriptableObject
     public GameObject coin;
     public float coinSpawnRate;
     public float coinGrabDistance;
+    public float experiencePerCoin;
 
     [Header("Experience")]
     public List<float> xpTable;
-    public float xpPerMinionKill;
+    public float experiencePerMinionKill;
 
     [Header("Rules")]
     public int attackMaxLevel;
