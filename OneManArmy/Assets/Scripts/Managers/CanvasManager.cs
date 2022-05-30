@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField] Canvas gameCanvas;
     [SerializeField] Canvas levelUpCanvas;
+    [SerializeField] EventSystem eventSystem;
     [SerializeField] TMP_Text levelText;
     [SerializeField] TMP_Text timeText;
     [SerializeField] List<ButtonInfo> buttonInfos;
@@ -56,12 +58,14 @@ public class CanvasManager : MonoBehaviour
     {
         gameCanvas.enabled = true;
         levelUpCanvas.enabled = false;
+        eventSystem.enabled = false;
     }
 
     public void DisplayLevelUpCanvas()
     {
         gameCanvas.enabled = false;
         levelUpCanvas.enabled = true;
+        eventSystem.enabled = true;
         currentSelectedAttacks = AttacksSelect.GetRandomAttacksSelection(3);
         for (int i = 0; i < currentSelectedAttacks.Count; i++)
         {

@@ -25,9 +25,9 @@ MonoBehaviour:
   minionSpeed: 3
   minionHealth: 10
   minionDamage: 5
-  minionSpawnRate: 1
+  minionSpawnPerSec: 3
   coin: {fileID: 3914043095429836201, guid: 7947aa09b7287514c8268b686313363f, type: 3}
-  coinSpawnRate: 1
+  coinSpawnPerSec: 1
   coinGrabDistance: 5
   experiencePerCoin: 0.5
   xpTable:

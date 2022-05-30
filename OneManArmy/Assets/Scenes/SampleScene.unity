@@ -2183,7 +2183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToPool: []
-  numberToCreateAtStart: 5
+  numberToCreateAtStart: 50
 --- !u!114 &2078781919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2211,6 +2211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameCanvas: {fileID: 2096938013}
   levelUpCanvas: {fileID: 1139839111}
+  eventSystem: {fileID: 391872549}
   levelText: {fileID: 1485342895}
   timeText: {fileID: 519469798}
   buttonInfos:

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CoinSpawner : Spawner
 {
     protected override GameObject objectToSpawn => DataManager.runtimeData.coin;
-    protected override float spawnDelay => DataManager.runtimeData.coinSpawnRate;
+    protected override float spawnPerSec => DataManager.runtimeData.coinSpawnPerSec;
 
     protected override Vector3 GetRandomPosition()
     {

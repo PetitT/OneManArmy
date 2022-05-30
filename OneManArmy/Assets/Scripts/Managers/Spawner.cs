@@ -6,10 +6,11 @@ using UnityEngine;
 public abstract class Spawner : IUpdatable
 {
     protected abstract GameObject objectToSpawn { get; }
-    protected abstract float spawnDelay { get; }
+    protected abstract float spawnPerSec { get; }
     protected Vector2 movement => MovementManager.movement;
     protected float minSpawnDistance => DataManager.runtimeData.minSpawnDistance;
     protected float maxSpawnDistance => DataManager.runtimeData.maxSpawnDistance;
+    float spawnDelay => 1 / spawnPerSec;
 
     float remainingSpawnDelay;
 

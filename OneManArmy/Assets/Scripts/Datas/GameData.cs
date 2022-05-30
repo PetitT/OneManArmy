@@ -27,11 +27,11 @@ public class GameData : ScriptableObject
     public float minionSpeed;
     public float minionHealth;
     public float minionDamage;
-    public float minionSpawnRate;
+    public float minionSpawnPerSec;
 
     [Header("Coins")]
     public GameObject coin;
-    public float coinSpawnRate;
+    public float coinSpawnPerSec;
     public float coinGrabDistance;
     public float experiencePerCoin;
 

@@ -7,7 +7,7 @@ using UnityEngine;
 public class MinionSpawner : Spawner
 {
     protected override GameObject objectToSpawn => DataManager.runtimeData.minion;
-    protected override float spawnDelay => DataManager.runtimeData.minionSpawnRate;
+    protected override float spawnPerSec => DataManager.runtimeData.minionSpawnPerSec;
 
     protected override Vector3 GetRandomPosition()
     {

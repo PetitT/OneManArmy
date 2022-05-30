@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class Attack : ScriptableObject, ISerializationCallbackReceiver
 {
     public int currentLevel { get; protected set; }
@@ -32,4 +33,14 @@ public abstract class Attack : ScriptableObject, ISerializationCallbackReceiver
     }
 
     public abstract string GetCurrentLevelUpInfo();
+}
+public class AttackData
+{
+    public string Info;
+}
+
+interface IDataHolder<T> where T : AttackData
+{
+    public List<T> dataList { get; set; }
+    public T data { get; }
 }
