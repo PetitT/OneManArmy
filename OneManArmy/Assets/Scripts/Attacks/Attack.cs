@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class Attack : ScriptableObject, ISerializationCallbackReceiver
+public abstract class Attack : ScriptableObject
 {
     public int currentLevel { get; protected set; }
+    protected float remainingCooldown;
 
     public abstract void OnInitialize();
     public abstract void OnUpdate();
     protected abstract void OnLevelUp();
+    protected abstract void DoAttack();
+    protected abstract bool IsAttackAvailable();
 
-    public void Reset()
+    public void ResetLevel()
     {
         currentLevel = 0;
     }
-
     public void LevelUp()
     {
         if (currentLevel >= DataManager.runtimeData.attackMaxLevel) return;
@@ -24,23 +26,42 @@ public abstract class Attack : ScriptableObject, ISerializationCallbackReceiver
         OnLevelUp();
     }
 
-
-    public void OnBeforeSerialize() { }
-
-    public void OnAfterDeserialize()
-    {
-        currentLevel = 0;
-    }
-
     public abstract string GetCurrentLevelUpInfo();
 }
+
+public abstract class AttackChild<T> : Attack where T : AttackData
+{
+    [SerializeField] protected List<T> dataList;
+    protected T data;
+
+    public override void OnInitialize()
+    {
+        remainingCooldown = data.Cooldown;
+        data.CopyFieldsFrom(dataList[0]);
+        currentLevel = 1;
+    }
+
+    public override string GetCurrentLevelUpInfo()
+    {
+        return dataList[currentLevel].Info;
+    }
+
+    public override void OnUpdate()
+    {
+        if(remainingCooldown > 0)
+        {
+            remainingCooldown -= Time.deltaTime;
+        }
+        else if(IsAttackAvailable())
+        {
+            DoAttack();
+            remainingCooldown = data.Cooldown;
+        }
+    }
+}
+
 public class AttackData
 {
     public string Info;
-}
-
-interface IDataHolder<T> where T : AttackData
-{
-    public List<T> dataList { get; set; }
-    public T data { get; }
+    public float Cooldown;
 }

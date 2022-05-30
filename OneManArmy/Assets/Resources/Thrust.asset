@@ -12,42 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14a055b246d23d43be4cef5e90dc008, type: 3}
   m_Name: Thrust
   m_EditorClassIdentifier: 
+  dataList:
+  - Info: Unlock Thrust
+    Cooldown: 0.5
+    Damage: 1
+    Range: 3
+    Linger: 0.5
+  - Info: -Cooldown +Damage
+    Cooldown: -0.1
+    Damage: 1
+    Range: 0
+    Linger: 0
+  - Info: +Range +Linger
+    Cooldown: 0
+    Damage: 0
+    Range: 1
+    Linger: 0.1
+  - Info: +Damage
+    Cooldown: 0
+    Damage: 1
+    Range: 0
+    Linger: 0
+  - Info: +Range - Cooldown
+    Cooldown: -0.1
+    Damage: 0
+    Range: 1
+    Linger: 0
+  - Info: +Linger
+    Cooldown: 0
+    Damage: 0
+    Range: 0
+    Linger: 0.1
+  - Info: +Damage +Range - Cooldown -Linger
+    Cooldown: -0.1
+    Damage: 1
+    Range: 1
+    Linger: 0.1
   handleRange: 0.5
   weaponPrefab: {fileID: 2937979261596537803, guid: 91c7e38e175177a43b42255e879c667a,
     type: 3}
-  dataList:
-  - info: Unlock spell
-    damage: 3
-    cooldown: 0.5
-    range: 5
-    linger: 0.25
-  - info: +Atk +Range
-    damage: 1
-    cooldown: 0
-    range: 1
-    linger: 0
-  - info: +Atk -CD
-    damage: 1
-    cooldown: -0.1
-    range: 0
-    linger: 0
-  - info: +Range +Linger
-    damage: 0
-    cooldown: 0
-    range: 1
-    linger: 0.2
-  - info: +Range
-    damage: 0
-    cooldown: 0
-    range: 2
-    linger: 0
-  - info: -CD
-    damage: 1
-    cooldown: -0.2
-    range: 0
-    linger: 0
-  - info: +Range +Linger + Damage -CD
-    damage: 1
-    cooldown: -0.1
-    range: 1
-    linger: 0.2

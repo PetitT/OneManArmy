@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Thrust Attack", menuName = ("Attacks/Thrust Attack"))]
-public class Thrust : Attack
+public class Thrust : AttackChild<ThrustData>
 {
     [SerializeField] float handleRange;
     [SerializeField] GameObject weaponPrefab;
-    [SerializeField] List<ThrustData> dataList;
 
-    ThrustData data;
-    float remainingCooldown;
+    Minion closestMinion;
     float remainingLingerTime;
     GameObject weapon;
     DamageDealer damageDealer;
@@ -22,71 +20,54 @@ public class Thrust : Attack
 
     public override void OnInitialize()
     {
-        remainingCooldown = data.cooldown;
+        base.OnInitialize();
         weapon = Instantiate(weaponPrefab, Character.body.transform.position, Quaternion.identity);
         damageDealer = weapon.GetComponentInChildren<DamageDealer>();
         defaultScale = weapon.transform.GetChild(0).localScale;
         weapon.SetActive(false);
-        data.CopyFieldsFrom(dataList[0]);
-        currentLevel = 1;
     }
 
     public override void OnUpdate()
     {
-        if (remainingCooldown > 0)
-        {
-            remainingCooldown -= Time.deltaTime;
-        }
-        else
-        {
-            CheckAttackAvailability();
-        }
-
+        base.OnUpdate();
         Timer.CountDown(ref remainingLingerTime, () => weapon.SetActive(false));
     }
 
     protected override void OnLevelUp()
     {
         ThrustData levelUpData = dataList[currentLevel - 1];
-        data.damage += levelUpData.damage;
-        data.cooldown += levelUpData.cooldown;
-        data.range += levelUpData.range;
-        data.linger += levelUpData.linger;
+        data.Damage += levelUpData.Damage;
+        data.Cooldown += levelUpData.Cooldown;
+        data.Range += levelUpData.Range;
+        data.Linger += levelUpData.Linger;
     }
 
-    public override string GetCurrentLevelUpInfo()
+    protected override bool IsAttackAvailable()
     {
-        return dataList[currentLevel].info;
-    }
-
-    private void CheckAttackAvailability()
-    {
-        Minion closestEnemy = MinionManager.GetClosestMinion();
-        if (closestEnemy == null) return;
-        if (closestEnemy.transform.position.magnitude < data.range + handleRange)
+        closestMinion = MinionManager.GetClosestMinion();
+        if (closestMinion == null) return false;
+        if (closestMinion.transform.position.sqrMagnitude < Mathf.Pow((data.Range + handleRange), 2))
         {
-            DoAttack(closestEnemy);
-            remainingCooldown = data.cooldown;
+            return true;
         }
+        return false;
     }
 
-    private void DoAttack(Minion enemy)
+    protected override void DoAttack()
     {
         weapon.SetActive(false);
-        weapon.transform.LookAt(new Vector3(enemy.transform.position.x, weapon.transform.position.y, enemy.transform.position.z));
-        weapon.transform.GetChild(0).localScale = new Vector3(defaultScale.x, defaultScale.y, data.range);
-        damageDealer.SetDamage(data.damage);
+        weapon.transform.LookAt(new Vector3(closestMinion.transform.position.x, weapon.transform.position.y, closestMinion.transform.position.z));
+        weapon.transform.GetChild(0).localScale = new Vector3(defaultScale.x, defaultScale.y, data.Range);
+        damageDealer.SetDamage(data.Damage);
         weapon.SetActive(true);
-        remainingLingerTime = data.linger;
+        remainingLingerTime = data.Linger;
     }
 }
 
 [Serializable]
-public class ThrustData
+public class ThrustData : AttackData
 {
-    public string info;
-    public float damage;
-    public float cooldown;
-    public float range;
-    public float linger;
+    public float Damage;
+    public float Range;
+    public float Linger;
 }

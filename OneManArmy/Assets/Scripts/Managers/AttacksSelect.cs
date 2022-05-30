@@ -11,7 +11,7 @@ public class AttacksSelect
     public AttacksSelect(List<Attack> attacks)
     {
         availableAttacks = attacks;
-        availableAttacks.ForEach(t => t.Reset());
+        availableAttacks.ForEach(t => t.ResetLevel());
     }
 
     public static List<Attack> GetRandomAttacksSelection(int amount)

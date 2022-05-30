@@ -4,40 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Boomerang", menuName = ("Attacks/Boomerang"))]
-public class Boomerang : Attack
+public class Boomerang : AttackChild<BoomerangData>
 {
     [SerializeField] GameObject boomerang;
-    [SerializeField] List<BoomerangData> data;
 
-    BoomerangData currentData;
-
-
-    public override string GetCurrentLevelUpInfo()
+    protected override void DoAttack()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
-    public override void OnInitialize()
+    protected override bool IsAttackAvailable()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void OnUpdate()
-    {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 
     protected override void OnLevelUp()
     {
-        throw new System.NotImplementedException();
+        throw new NotImplementedException();
     }
 }
 
 [Serializable]
-public class BoomerangData 
+public class BoomerangData : AttackData
 {
-    public string Info;
-    public float Cooldown;
     public float Damage;
     public float Speed;
     public float Range;

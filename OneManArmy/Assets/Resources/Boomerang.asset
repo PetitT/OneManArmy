@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20531c900d09fb445acd8e45a7ec830b, type: 3}
   m_Name: Boomerang
   m_EditorClassIdentifier: 
+  dataList:
+  - Info: 
+    Cooldown: 0
+    Damage: 0
+    Speed: 0
+    Range: 0
   boomerang: {fileID: 0}
-  data: []
