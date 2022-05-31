@@ -1,26 +1,66 @@
+using LowTeeGames;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Boomerang", menuName = ("Attacks/Boomerang"))]
 public class Boomerang : AttackChild<BoomerangData>
 {
     [SerializeField] GameObject boomerang;
+    [SerializeField] float minRange;
+    Minion targetMinion;
+    List<BoomerangBehavior> activeBoomerangs;
 
-    protected override void DoAttack()
+    public override void OnInitialize()
     {
-        throw new NotImplementedException();
+        base.OnInitialize();
+        activeBoomerangs = new List<BoomerangBehavior>();
+        BoomerangBehavior.onDeactivate += BoomerangBehavior_onDeactivate;
     }
 
     protected override bool IsAttackAvailable()
     {
-        throw new NotImplementedException();
+        targetMinion = MinionManager.GetClosestMinion();
+        if (targetMinion != null) return true;
+
+        return false;
+    }
+
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+
+        foreach (var item in activeBoomerangs.ToList())
+        {
+            item.OnUpdate();
+        }
     }
 
     protected override void OnLevelUp()
     {
-        throw new NotImplementedException();
+        BoomerangData levelUpDatas = dataList[currentLevel - 1];
+        data.Cooldown += levelUpDatas.Cooldown;
+        data.Damage += levelUpDatas.Damage;
+        data.Range += levelUpDatas.Range;
+        data.Speed += levelUpDatas.Speed;
+    }
+
+    protected override void DoAttack()
+    {
+        BoomerangBehavior newBoomerang = Pool.Instance.GetItemFromPool(boomerang, Vector3.zero, Quaternion.identity).GetComponent<BoomerangBehavior>();
+        newBoomerang.Initialize(data.Speed, data.Range, minRange, targetMinion.transform.position);
+        newBoomerang.GetComponent<DamageDealer>().SetDamage(data.Damage);
+        activeBoomerangs.Add(newBoomerang);
+    }
+
+    private void BoomerangBehavior_onDeactivate(BoomerangBehavior obj)
+    {
+        if (activeBoomerangs.Contains(obj))
+        {
+            activeBoomerangs.Remove(obj);
+        }
     }
 }
 

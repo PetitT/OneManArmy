@@ -2154,7 +2154,7 @@ MonoBehaviour:
   attacks:
   - {fileID: 11400000, guid: 95ba79c247e4f444a8af226f88a5560f, type: 2}
   - {fileID: 11400000, guid: c3655e08843817941bb6fc0de6fc4ee3, type: 2}
-  - {fileID: 11400000, guid: e13c24a327ef0024e80a0579bc0c05c7, type: 2}
+  - {fileID: 11400000, guid: 9fbdc6d2d2a501a4e98ad140c228f3ad, type: 2}
 --- !u!4 &2078781917
 Transform:
   m_ObjectHideFlags: 0
@@ -2183,7 +2183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToPool: []
-  numberToCreateAtStart: 50
+  numberToCreateAtStart: 10
 --- !u!114 &2078781919
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,9 +10,9 @@ public abstract class Attack : ScriptableObject
 
     public abstract void OnInitialize();
     public abstract void OnUpdate();
+    protected abstract bool IsAttackAvailable();
     protected abstract void OnLevelUp();
     protected abstract void DoAttack();
-    protected abstract bool IsAttackAvailable();
 
     public void ResetLevel()
     {
@@ -32,7 +32,7 @@ public abstract class Attack : ScriptableObject
 public abstract class AttackChild<T> : Attack where T : AttackData
 {
     [SerializeField] protected List<T> dataList;
-    protected T data;
+    [SerializeField] protected T data;
 
     public override void OnInitialize()
     {
@@ -48,11 +48,11 @@ public abstract class AttackChild<T> : Attack where T : AttackData
 
     public override void OnUpdate()
     {
-        if(remainingCooldown > 0)
+        if (remainingCooldown > 0)
         {
             remainingCooldown -= Time.deltaTime;
         }
-        else if(IsAttackAvailable())
+        else if (IsAttackAvailable())
         {
             DoAttack();
             remainingCooldown = data.Cooldown;
