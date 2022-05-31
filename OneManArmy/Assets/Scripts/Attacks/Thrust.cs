@@ -36,17 +36,17 @@ public class Thrust : AttackChild<ThrustData>
     protected override void OnLevelUp()
     {
         ThrustData levelUpData = dataList[currentLevel - 1];
-        data.Damage += levelUpData.Damage;
-        data.Cooldown += levelUpData.Cooldown;
-        data.Range += levelUpData.Range;
-        data.Linger += levelUpData.Linger;
+        currentData.Damage += levelUpData.Damage;
+        currentData.Cooldown += levelUpData.Cooldown;
+        currentData.Range += levelUpData.Range;
+        currentData.Linger += levelUpData.Linger;
     }
 
     protected override bool IsAttackAvailable()
     {
         closestMinion = MinionManager.GetClosestMinion();
         if (closestMinion == null) return false;
-        if (closestMinion.transform.position.sqrMagnitude < Mathf.Pow((data.Range + handleRange), 2))
+        if (closestMinion.transform.position.sqrMagnitude < Mathf.Pow((currentData.Range + handleRange), 2))
         {
             return true;
         }
@@ -57,10 +57,10 @@ public class Thrust : AttackChild<ThrustData>
     {
         weapon.SetActive(false);
         weapon.transform.LookAt(new Vector3(closestMinion.transform.position.x, weapon.transform.position.y, closestMinion.transform.position.z));
-        weapon.transform.GetChild(0).localScale = new Vector3(defaultScale.x, defaultScale.y, data.Range);
-        damageDealer.SetDamage(data.Damage);
+        weapon.transform.GetChild(0).localScale = new Vector3(defaultScale.x, defaultScale.y, currentData.Range);
+        damageDealer.SetDamage(currentData.Damage);
         weapon.SetActive(true);
-        remainingLingerTime = data.Linger;
+        remainingLingerTime = currentData.Linger;
     }
 }
 

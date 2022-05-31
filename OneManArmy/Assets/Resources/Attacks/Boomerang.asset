@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boomerang
   m_EditorClassIdentifier: 
   dataList:
-  - Info: Unlock Spell
+  - Info: Unlock Boomerang
     Cooldown: 1
     Damage: 15
     Speed: 50
@@ -51,7 +51,7 @@ MonoBehaviour:
   data:
     Info: Unlock Spell
     Cooldown: 1
-    Damage: 0.5
+    Damage: 15
     Speed: 50
     Range: 40
   boomerang: {fileID: 5868277095184447638, guid: 028c7d47da9c6b64db21977bc636394e,

@@ -41,17 +41,17 @@ public class Boomerang : AttackChild<BoomerangData>
     protected override void OnLevelUp()
     {
         BoomerangData levelUpDatas = dataList[currentLevel - 1];
-        data.Cooldown += levelUpDatas.Cooldown;
-        data.Damage += levelUpDatas.Damage;
-        data.Range += levelUpDatas.Range;
-        data.Speed += levelUpDatas.Speed;
+        currentData.Cooldown += levelUpDatas.Cooldown;
+        currentData.Damage += levelUpDatas.Damage;
+        currentData.Range += levelUpDatas.Range;
+        currentData.Speed += levelUpDatas.Speed;
     }
 
     protected override void DoAttack()
     {
         BoomerangBehavior newBoomerang = Pool.Instance.GetItemFromPool(boomerang, Vector3.zero, Quaternion.identity).GetComponent<BoomerangBehavior>();
-        newBoomerang.Initialize(data.Speed, data.Range, minRange, targetMinion.transform.position);
-        newBoomerang.GetComponent<DamageDealer>().SetDamage(data.Damage);
+        newBoomerang.Initialize(currentData.Speed, currentData.Range, minRange, targetMinion.transform.position);
+        newBoomerang.GetComponent<DamageDealer>().SetDamage(currentData.Damage);
         activeBoomerangs.Add(newBoomerang);
     }
 

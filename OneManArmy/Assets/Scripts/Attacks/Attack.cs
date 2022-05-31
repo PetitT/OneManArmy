@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,12 +33,12 @@ public abstract class Attack : ScriptableObject
 public abstract class AttackChild<T> : Attack where T : AttackData
 {
     [SerializeField] protected List<T> dataList;
-    [SerializeField] protected T data;
+    [SerializeField] protected T currentData;
 
     public override void OnInitialize()
     {
-        remainingCooldown = data.Cooldown;
-        data.CopyFieldsFrom(dataList[0]);
+        remainingCooldown = currentData.Cooldown;
+        currentData.CopyFieldsFrom(dataList[0]);
         currentLevel = 1;
     }
 
@@ -55,7 +56,7 @@ public abstract class AttackChild<T> : Attack where T : AttackData
         else if (IsAttackAvailable())
         {
             DoAttack();
-            remainingCooldown = data.Cooldown;
+            remainingCooldown = currentData.Cooldown;
         }
     }
 }
