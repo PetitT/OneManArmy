@@ -7,6 +7,9 @@ public class BombBehavior : MonoBehaviour, IUpdatable
 {
     Vector3 currentMovement => new Vector3(-MovementManager.movement.x, 0, -MovementManager.movement.y);
     Vector3 direction;
+    Vector2 damageRange;
+    Vector2 distanceFalloff;
+
     float speed;
     float maxHeight;
     float distanceToReach;
@@ -15,13 +18,15 @@ public class BombBehavior : MonoBehaviour, IUpdatable
 
     public static event Action<BombBehavior> onDeactivate;
 
-    public void Initialize(Vector3 targetPosition, float speed, float minDistanceToTarget, float maxHeight)
+    public void Initialize(Vector3 targetPosition, Vector2 damageRange, Vector2 distanceFalloff, float speed, float minDistanceToTarget, float maxHeight)
     {
         distanceToReach = targetPosition.magnitude;
         direction = targetPosition.normalized;
         this.speed = speed;
         this.minDistanceToTarget = minDistanceToTarget;
         this.maxHeight = maxHeight;
+        this.damageRange = damageRange;
+        this.distanceFalloff = distanceFalloff;
         remainingDistance = distanceToReach;
     }
 
@@ -46,8 +51,21 @@ public class BombBehavior : MonoBehaviour, IUpdatable
         remainingDistance -= distanceToMove;
         if(remainingDistance < minDistanceToTarget)
         {
+            Explode();
             gameObject.SetActive(false);
             onDeactivate?.Invoke(this);
+        }
+    }
+
+    public void Explode()
+    {
+        Collider[] cols = Physics.OverlapSphere(transform.position, distanceFalloff.y);
+        for (int i = 0; i < cols.Length; i++)
+        {
+            if(cols[i].TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(damageRange.y);
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ MonoBehaviour:
   minSpawnDistance: 45
   maxSpawnDistance: 60
   maxDistanceFromCenter: 100
-  minion: {fileID: 5871773894940040405, guid: ca00f34fde3925f4e93938d6c5855b99, type: 3}
+  minion: {fileID: 4855470996990543284, guid: ca00f34fde3925f4e93938d6c5855b99, type: 3}
   minionSpeed: 3
   minionHealth: 10
   minionDamage: 5

@@ -11,6 +11,7 @@ public class Bomb : AttackChild<BombData>
     [SerializeField] GameObject bomb;
     [SerializeField] float minDistanceToTarget;
     [SerializeField] float maxHeight;
+    [SerializeField] float maxAttackRange;
     Minion target;
     List<BombBehavior> currentBombs;
 
@@ -48,16 +49,15 @@ public class Bomb : AttackChild<BombData>
 
     protected override bool IsAttackAvailable()
     {
-        if (MinionManager.CurrentObjects.Count == 0) return false;
-        target = MinionManager.CurrentObjects.GetRandom() as Minion;
-        return true;
+        target = MinionManager.GetRandomMinionInRange(maxAttackRange);
+        return target != null;
     }
 
 
     protected override void DoAttack()
     {
         BombBehavior newBomb = Pool.Instance.GetItemFromPool(bomb, Vector3.zero, Quaternion.identity).GetComponent<BombBehavior>();
-        newBomb.Initialize(target.transform.position, currentData.speed, minDistanceToTarget, maxHeight);
+        newBomb.Initialize(target.transform.position, currentData.DamageRange, currentData.DistanceFalloff, currentData.speed, minDistanceToTarget, maxHeight);
         currentBombs.Add(newBomb);
     }
 

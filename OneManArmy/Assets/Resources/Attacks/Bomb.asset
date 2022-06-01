@@ -57,3 +57,4 @@ MonoBehaviour:
   bomb: {fileID: 2669762326124388753, guid: f8cd5d558cb96ba4daa362c465b35aa5, type: 3}
   minDistanceToTarget: 0.5
   maxHeight: 5
+  maxAttackRange: 20
