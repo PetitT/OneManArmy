@@ -2096,6 +2096,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671214306}
   m_CullTransparentMesh: 1
+--- !u!23 &1701365286 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5755178406547726691, guid: 75a504d3ccc3fc74099a8df7aadd750a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5755178406999123781}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1744229656 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6073331529537785427, guid: ed3f13d8280fb9f469cad464f580643e,
@@ -2644,6 +2650,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 5755178406547726692, guid: 75a504d3ccc3fc74099a8df7aadd750a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5755178406547726695, guid: 75a504d3ccc3fc74099a8df7aadd750a,
         type: 3}
       propertyPath: xpbar
@@ -2659,6 +2670,11 @@ PrefabInstance:
       propertyPath: levelText
       value: 
       objectReference: {fileID: 2095312080}
+    - target: {fileID: 5755178406547726695, guid: 75a504d3ccc3fc74099a8df7aadd750a,
+        type: 3}
+      propertyPath: meshRenderer
+      value: 
+      objectReference: {fileID: 1701365286}
     - target: {fileID: 5755178406547726700, guid: 75a504d3ccc3fc74099a8df7aadd750a,
         type: 3}
       propertyPath: m_RootOrder
@@ -2722,7 +2738,7 @@ PrefabInstance:
     - target: {fileID: 5755178406547726701, guid: 75a504d3ccc3fc74099a8df7aadd750a,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 1214
+      value: 1217
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75a504d3ccc3fc74099a8df7aadd750a, type: 3}

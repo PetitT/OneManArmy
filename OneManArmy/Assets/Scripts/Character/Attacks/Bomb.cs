@@ -43,8 +43,8 @@ public class Bomb : AttackChild<BombData>
     {
         BombData newData = dataList[currentLevel - 1];
         currentData.Cooldown += newData.Cooldown;
-        currentData.DamageRange += newData.DamageRange;
-        currentData.DistanceFalloff += newData.DistanceFalloff;
+        currentData.Damage += newData.Damage;
+        currentData.ExplosionRange += newData.ExplosionRange;
     }
 
     protected override bool IsAttackAvailable()
@@ -57,7 +57,7 @@ public class Bomb : AttackChild<BombData>
     protected override void DoAttack()
     {
         BombBehavior newBomb = Pool.Instance.GetItemFromPool(bomb, Vector3.zero, Quaternion.identity).GetComponent<BombBehavior>();
-        newBomb.Initialize(target.transform.position, currentData.DamageRange, currentData.DistanceFalloff, currentData.speed, minDistanceToTarget, maxHeight);
+        newBomb.Initialize(target.transform.position, currentData.Damage, currentData.ExplosionRange, currentData.Speed, minDistanceToTarget, maxHeight);
         currentBombs.Add(newBomb);
     }
 
@@ -67,7 +67,7 @@ public class Bomb : AttackChild<BombData>
 [Serializable]
 public class BombData : AttackData
 {
-    public Vector2 DamageRange;
-    public Vector2 DistanceFalloff;
-    public float speed;
+    public float Damage;
+    public float ExplosionRange;
+    public float Speed;
 }

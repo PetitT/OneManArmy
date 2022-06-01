@@ -16,7 +16,7 @@ MonoBehaviour:
   - Info: Unlock Thrust
     Cooldown: 0.5
     Damage: 1
-    Range: 3
+    Range: 5
     Linger: 0.5
   - Info: -Cooldown +Damage
     Cooldown: -0.1
@@ -48,6 +48,12 @@ MonoBehaviour:
     Damage: 1
     Range: 1
     Linger: 0.1
+  currentData:
+    Info: Unlock Thrust
+    Cooldown: 0.5
+    Damage: 1
+    Range: 3
+    Linger: 0.5
   handleRange: 0.5
   weaponPrefab: {fileID: 2937979261596537803, guid: 91c7e38e175177a43b42255e879c667a,
     type: 3}

@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageDealer : MonoBehaviour
+public abstract class DamageDealer : MonoBehaviour
 {
-    private float Damage;
-
-    private void OnTriggerEnter(Collider other)
+    private float damage;
+    public void SetDamage(float newDamage)
     {
-        if(other.TryGetComponent(out IDamageable damageable))
-        {
-            damageable.TakeDamage(Damage);
-        }
+        damage = newDamage;
     }
 
-    public void SetDamage(float damage)
+    protected void DealDamage(IDamageable damageable)
     {
-        Damage = damage;
+        damageable.TakeDamage(damage);
     }
 }

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Minion : Spawnable, IDamageable
 {
+    [SerializeField] MeshRenderer mesh;
     Health health;
     DamageDealer damageDealer;
+    DamageFeedback damageFeedback;
 
     protected override void Initialize()
     {
         health = new Health(DataManager.runtimeData.minionHealth);
         movement = new MinionMovement(transform);
+        damageFeedback = new DamageFeedback(mesh);
         damageDealer = GetComponent<DamageDealer>();
         updatables.Add(movement);
 
@@ -51,5 +54,6 @@ public class Minion : Spawnable, IDamageable
     public void TakeDamage(float damage)
     {
         health.TakeDamage(damage);
+        damageFeedback.Blink();
     }
 }

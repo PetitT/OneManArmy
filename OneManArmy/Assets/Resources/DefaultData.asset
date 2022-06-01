@@ -16,7 +16,7 @@ MonoBehaviour:
   acceleration: 15
   groundTextureSpeedMultiplicator: 0.02
   health: 20
-  invincibilityTime: 0
+  invincibilityTime: 1
   healthBarDisplayTime: 0.5
   minSpawnDistance: 45
   maxSpawnDistance: 60
@@ -43,3 +43,9 @@ MonoBehaviour:
   - 19
   experiencePerMinionKill: 0.25
   attackMaxLevel: 7
+  allyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  ennemyLayer:
+    serializedVersion: 2
+    m_Bits: 128

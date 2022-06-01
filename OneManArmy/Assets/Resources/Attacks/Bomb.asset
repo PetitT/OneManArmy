@@ -15,45 +15,45 @@ MonoBehaviour:
   dataList:
   - Info: Unlock Bomb
     Cooldown: 2
-    DamageRange: {x: 0, y: 0}
-    DistanceFalloff: {x: 0, y: 0}
-    speed: 50
+    Damage: 2
+    ExplosionRange: 5
+    Speed: 10
   - Info: 
     Cooldown: 0
-    DamageRange: {x: 0, y: 0}
-    DistanceFalloff: {x: 0, y: 0}
-    speed: 0
+    Damage: 0
+    ExplosionRange: 0
+    Speed: 0
   - Info: 
     Cooldown: 0
-    DamageRange: {x: 0, y: 0}
-    DistanceFalloff: {x: 0, y: 0}
-    speed: 0
+    Damage: 0
+    ExplosionRange: 0
+    Speed: 0
   - Info: 
     Cooldown: 0
-    DamageRange: {x: 0, y: 0}
-    DistanceFalloff: {x: 0, y: 0}
-    speed: 0
+    Damage: 0
+    ExplosionRange: 0
+    Speed: 0
   - Info: 
     Cooldown: 0
-    DamageRange: {x: 0, y: 0}
-    DistanceFalloff: {x: 0, y: 0}
-    speed: 0
+    Damage: 0
+    ExplosionRange: 0
+    Speed: 0
   - Info: 
     Cooldown: 0
-    DamageRange: {x: 0, y: 0}
-    DistanceFalloff: {x: 0, y: 0}
-    speed: 0
+    Damage: 0
+    ExplosionRange: 0
+    Speed: 0
   - Info: 
     Cooldown: 0
-    DamageRange: {x: 0, y: 0}
-    DistanceFalloff: {x: 0, y: 0}
-    speed: 0
+    Damage: 0
+    ExplosionRange: 0
+    Speed: 0
   currentData:
     Info: Unlock Bomb
     Cooldown: 2
-    DamageRange: {x: 0, y: 0}
-    DistanceFalloff: {x: 0, y: 0}
-    speed: 50
+    Damage: 2
+    ExplosionRange: 5
+    Speed: 10
   bomb: {fileID: 2669762326124388753, guid: f8cd5d558cb96ba4daa362c465b35aa5, type: 3}
   minDistanceToTarget: 0.5
   maxHeight: 5

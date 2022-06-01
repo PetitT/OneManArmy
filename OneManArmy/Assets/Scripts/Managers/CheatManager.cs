@@ -21,7 +21,7 @@ public class CheatManager : MonoBehaviour
 
     public void ToggleGodMode()
     {
-        FindObjectOfType<Character>().ToggleInvulnerability();
+        FindObjectOfType<Character>().ToggleImmortality();
     }
 
     private void OnGUI()

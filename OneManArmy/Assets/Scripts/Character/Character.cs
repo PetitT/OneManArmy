@@ -13,15 +13,16 @@ public class Character : MonoBehaviour, IDamageable
     public static Transform body;
     [SerializeField] Slider healthBar; 
     [SerializeField] Slider xpbar; 
-    [SerializeField] TMP_Text levelText; 
+    [SerializeField] TMP_Text levelText;
+    [SerializeField] MeshRenderer meshRenderer;
 
     Health health;
     HealthBarDisplay healthBarDisplay;
+    DamageFeedback damageFeedback;
     Experience experience;
     ExperienceBarDisplay xpBarDisplay;
     CoinMagnet coinMagnet;
-
-    bool isVulnerable = true;
+    Invulnerability invulnerability;
 
     List<IUpdatable> updatables = new List<IUpdatable>();
 
@@ -33,9 +34,12 @@ public class Character : MonoBehaviour, IDamageable
         experience = new Experience();
         xpBarDisplay = new ExperienceBarDisplay(xpbar, levelText);
         coinMagnet = new CoinMagnet();
+        damageFeedback = new DamageFeedback(meshRenderer);
+        invulnerability = new Invulnerability();
 
         updatables.Add(coinMagnet);
         updatables.Add(healthBarDisplay);
+        updatables.Add(invulnerability);
 
         health.onDeath += Health_onDeath;
         OnMinionDeathEvent.RegisterListener(OnMinionDeath);
@@ -73,12 +77,14 @@ public class Character : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        if (!isVulnerable) return;
+        if (!invulnerability.IsDamageable()) return;
         health.TakeDamage(damage);
+        invulnerability.BeginInvulnerabilityTime();
+        damageFeedback.Blink();
     }
 
-    public void ToggleInvulnerability()
+    public void ToggleImmortality()
     {
-        isVulnerable = !isVulnerable;
+        invulnerability.ToggleImmortality();   
     }
 }

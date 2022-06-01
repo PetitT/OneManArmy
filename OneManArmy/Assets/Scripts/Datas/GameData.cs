@@ -41,4 +41,8 @@ public class GameData : ScriptableObject
 
     [Header("Rules")]
     public int attackMaxLevel;
+
+    [Header("Layers")]
+    public LayerMask allyLayer;
+    public LayerMask ennemyLayer;
 }
